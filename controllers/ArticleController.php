@@ -8,7 +8,10 @@ class ArticleController{
     public function index()
     {
         $model = new Article;
-        $data = $model->findAll();
+        $data = $model->findAll([
+            'fields'=>'a.*, b.cat_name',
+            'join'=>'a LEFT JOIN article_category b ON a.article_category_id=b.id',
+        ]);
         view('article/index', $data);
     }
 

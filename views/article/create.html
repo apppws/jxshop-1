@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="/Styles/general.css" rel="stylesheet" type="text/css" />
     <link href="/Styles/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/simditor-2.3.6/styles/simditor.css" />
 </head>
 
 <body>
@@ -29,7 +30,7 @@
                 <tr>
                     <td class="label">文章内容:</td>
                     <td>
-                        <textarea name="content" id="" cols="80" rows="10"></textarea>
+                        <textarea name="content" id="content" cols="80" rows="10"></textarea>
                         <font color="red">*</font>
                     </td>
                 </tr>
@@ -63,3 +64,40 @@
 </body>
 
 </html>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/module.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/uploader.js"></script>
+<script type="text/javascript" src="/simditor-2.3.6/scripts/simditor.js"></script>
+<script>
+    var editor = new Simditor({
+        textarea: $('#content'),
+        upload:{
+        url:'/upload/upload',
+        params:'null',
+        fileKey:'file',
+        connectionCount:3,
+        leaveConfirm: '文件上传中，真要离开吗？'
+        },
+        toolbar:[
+            'title',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            'fontScale',
+            'color',
+            'ol'    ,       
+            'ul'         ,
+            'blockquote',
+            'code'       ,
+            'table',
+            'link',
+            'image',
+            'hr'          , 
+            'indent',
+            'outdent',
+            'alignment'
+            ]
+    });
+</script>

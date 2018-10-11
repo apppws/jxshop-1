@@ -30,6 +30,47 @@ class CodeController extends BaseController
         $fillable = implode("','", $fillable);
 
         $mname = ucfirst($tableName);
+        //将这个模块的权限添加的数据库=====START=============================
+        $zh_name=$_GET['zh_name'];      //模块中文名称
+        $model=new \models\Privilege;
+        $pri_top=[
+            'pri_name'=>$zh_name.'模块',
+            'url_path'=>'',
+            'parent_id'=>0,
+        ];
+        $model->fill($pri_top);
+        $model->insert();
+        $top_id=$model->data['id'];
+        $pri_top=[
+            'pri_name'=>$zh_name.'列表',
+            'url_path'=>'',
+            'parent_id'=>$top_id,
+        ];
+        $model->fill($pri_top);
+        $model->insert();
+        $pri_id=$model->data['id'];
+        $pri_arr=[
+            [
+                'pri_name'=>'添加'.$zh_name,
+                'url_path'=>$tableName.'/create,'.$tableName.'/insert',
+                'parent_id'=>$pri_id, 
+            ],
+            [
+                'pri_name'=>'修改'.$zh_name,
+                'url_path'=>$tableName.'/edit,'.$tableName.'/update',
+                'parent_id'=>$pri_id, 
+            ],
+            [
+                'pri_name'=>'删除'.$zh_name,
+                'url_path'=>$tableName.'/delete',
+                'parent_id'=>$pri_id, 
+            ]
+        ];
+
+        foreach($pri_arr as $v){
+            $model->fill($v);
+            $model->insert();
+        }
 
         // 2. 生成控制器
         // 拼出控制名的名字

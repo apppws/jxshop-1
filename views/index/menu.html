@@ -123,29 +123,16 @@ body {
 <div id="main-div">
     <div id="menu-list">
         <ul id="menu-ul">
-            <li class="explode">
-                商品模块
-                <ul>
-                    <li class="menu-item"><a href="/category/index" target="main-frame">分类管理</a></li>
-                    <li class="menu-item"><a href="/brand/index" target="main-frame">品牌管理</a></li>
-                    <li class="menu-item"><a href="/goods/index" target="main-frame">商品管理</a></li>
-                </ul>
-            </li>
-            <li class="explode">
-                管理员模块
-                <ul>
-                    <li class="menu-item"><a href="/privilege/index" target="main-frame">权限管理</a></li>
-                    <li class="menu-item"><a href="/role/index" target="main-frame">角色管理</a></li>
-                    <li class="menu-item"><a href="/admin/index" target="main-frame">管理员管理</a></li>
-                </ul>
-            </li>
-            <li class="explode">
-                文章模块
-                <ul>
-                    <li class="menu-item"><a href="/Article_category/index" target="main-frame">分类管理</a></li>
-                    <li class="menu-item"><a href="/Article/index" target="main-frame">文章管理</a></li>
-                </ul>
-            </li>
+                <?php foreach($data as $v):?>
+                <li class="explode">
+                    <?php if($v['level']==0) echo $v['pri_name'];  ?>
+                    <?php if($v['level']==1): ?>
+                    <ul>   
+                        <li class="menu-item"><a href="/<?=$v['url_path']?>" target="main-frame"><?= $v['pri_name'] ?></a></li>
+                    </ul>
+                    <?php endif; ?>
+                </li>
+                <?php endforeach; ?>
         </ul>
     </div>
     <div id="help-div" style="display:none">

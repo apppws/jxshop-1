@@ -13,7 +13,13 @@ class IndexController extends BaseController
     }
     public function menu()
     {
-        view('index/menu');
+        $model = new \models\Privilege;
+        $data = $model->tree();
+        // echo "<pre>";
+        // var_dump($data);
+        view('index/menu',[
+            'data'=>$data
+        ]);
     }
     public function main()
     {

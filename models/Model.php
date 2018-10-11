@@ -15,7 +15,7 @@ use PDO;
     // 操作的表名，值由子类设置
     protected $table;
     // 表单中的数据，值由控制器设置
-    protected $data;    
+    public $data;    
 
     /**
      * $data = [
